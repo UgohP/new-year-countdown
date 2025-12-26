@@ -2,7 +2,7 @@ let dayBox = document.getElementById("day-box");
 let hrBox = document.getElementById("hr-box");
 let minBox = document.getElementById("min-box");
 let secBox = document.getElementById("sec-box");
-let endDate = new Date(2025, 11, 26, 15, 18);
+let endDate = new Date(2025, 11, 26, 13, 30);
 let endTime = endDate.getTime();
 
 function countdown() {
@@ -15,30 +15,34 @@ function countdown() {
 
   let addZeroes = (num) => (num < 10 ? `0${num}` : num);
 
-  if (endTime <= todayTime) {
+  if (endTime < todayTime) {
     clearInterval(i);
-
-    document.body.style.backgroundImage = "url('2026.jpg')";
-    document.body.style.backgroundSize = "cover";
-    document.querySelector(".wrapper").style.display = "none";
-    document.body.style.backgroundPosition = "center";
-    document.body.style.backgroundRepeat = "no-repeat";
-    document.body.style.height = "100vh";
+    document.querySelector(
+      ".countdown"
+    ).innerHTML = `<h1>Welcome to 2024</h1>`;
+    
+    window.location.href='./dist/index.html';
   } else {
     let daysLeft = Math.floor(remainingTime / oneDay);
     let hrsLeft = Math.floor((remainingTime % oneDay) / oneHr);
     let minsLeft = Math.floor((remainingTime % oneHr) / oneMin);
     let secsLeft = Math.floor((remainingTime % oneMin) / 1000);
-    if (hrsLeft <= 0 && daysLeft <= 0) {
+    if (hrsLeft <= 0 && daysLeft <= 0){
       document.body.style.backgroundImage = "url('background-img3.webp')";
-      document.querySelector("img").style.display = "none";
+	document.querySelector(
+        "img"
+      ).style.display = "none";
 
-      document.querySelector(".heading h3").style.display = "none";
-      document.querySelector(".heading h2").style.display = "none";
-    }
-    if (minsLeft <= 3 && daysLeft <= 0 && hrsLeft <= 0) {
-      document.body.style.backgroundImage = "url('germini2.png')";
-
+      document.querySelector(
+        ".heading h3"
+      ).style.display = "none";
+	document.querySelector(
+        ".heading h2"
+      ).style.display = "none";
+    } 
+    if (minsLeft <= 60 && daysLeft <= 0 && hrsLeft <= 0){
+      document.body.style.backgroundImage = "url('background-img5ff.jpg')";
+    
       const nodeList = document.querySelectorAll("span.num");
       for (let i = 0; i < nodeList.length; i++) {
         nodeList[i].style.color = "darkred";
@@ -46,21 +50,30 @@ function countdown() {
         nodeList[i].style.width = "400px";
         nodeList[i].style.height = "400px";
       }
-
-      const boxList = document.querySelectorAll(".box");
+      
+	const boxList = document.querySelectorAll(".box");
       for (let i = 0; i < boxList.length - 2; i++) {
         boxList[i].style.display = "none";
       }
 
-      document.querySelector(".heading h2").style.color = "darkred";
-      document.querySelector(".heading h2").style.display = "none";
-      document.querySelector("img").style.display = "none";
+      document.querySelector(
+        ".heading h2"
+      ).style.color = "darkred";
+      document.querySelector(
+        ".heading h2"
+      ).style.display = "none";
+	document.querySelector(
+        "img"
+      ).style.display = "none";
 
-      document.querySelector(".heading h3").style.display = "none";
-    }
-    if (secsLeft <= 10 && minsLeft <= 0 && daysLeft <= 0 && hrsLeft <= 0) {
-      document.body.style.backgroundImage = "url('germini7.png')";
-
+      document.querySelector(
+        ".heading h3"
+      ).style.display = "none";
+      
+    } 
+    if (secsLeft <= 40 && minsLeft <= 0 && daysLeft <= 0 && hrsLeft <= 0){
+      document.body.style.backgroundImage = "url('background-img5.webp')";
+    
       const nodeList = document.querySelectorAll("span.num");
       for (let i = 0; i < nodeList.length; i++) {
         nodeList[i].style.color = "darkred";
@@ -74,19 +87,28 @@ function countdown() {
         boxList[i].style.display = "none";
       }
 
-      document.querySelector(".heading h2").style.color = "darkred";
+      document.querySelector(
+        ".heading h2"
+      ).style.color = "darkred";
+      
+      document.querySelector(
+        ".heading h2"
+      ).style.display = "none";
 
-      document.querySelector(".heading h2").style.display = "none";
+      document.querySelector(
+        "img"
+      ).style.display = "none";
 
-      document.querySelector("img").style.display = "none";
-
-      document.querySelector(".heading h3").style.display = "none";
-    }
+      document.querySelector(
+        ".heading h3"
+      ).style.display = "none";
+      
+    } 
     dayBox.textContent = addZeroes(daysLeft);
     hrBox.textContent = addZeroes(hrsLeft);
     minBox.textContent = addZeroes(minsLeft);
     secBox.textContent = addZeroes(secsLeft);
-  }
+  } 
 }
 
 let i = setInterval(countdown, 1000);
