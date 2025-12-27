@@ -2,7 +2,7 @@ let dayBox = document.getElementById("day-box");
 let hrBox = document.getElementById("hr-box");
 let minBox = document.getElementById("min-box");
 let secBox = document.getElementById("sec-box");
-let endDate = new Date(2025, 11, 26, 15, 18);
+let endDate = new Date(2026, 0, 1, 0, 0);
 let endTime = endDate.getTime();
 
 function countdown() {
@@ -15,23 +15,18 @@ function countdown() {
 
   let addZeroes = (num) => (num < 10 ? `0${num}` : num);
 
-  if (endTime <= todayTime) {
+  if (endTime < todayTime) {
     clearInterval(i);
+    document.querySelector(".countdown").innerHTML = `<h1>Welcome to 2024</h1>`;
 
-    document.body.style.backgroundImage = "url('2026.jpg')";
-    document.body.style.backgroundSize = "cover";
-    document.querySelector(".wrapper").style.display = "none";
-    document.body.style.backgroundPosition = "center";
-    document.body.style.backgroundRepeat = "no-repeat";
-    document.body.style.height = "100vh";
+    window.location.href = "./dist/index.html";
   } else {
     let daysLeft = Math.floor(remainingTime / oneDay);
     let hrsLeft = Math.floor((remainingTime % oneDay) / oneHr);
     let minsLeft = Math.floor((remainingTime % oneHr) / oneMin);
     let secsLeft = Math.floor((remainingTime % oneMin) / 1000);
-    if (daysLeft <= 0 && hrsLeft > 0) {
+    if (daysLeft <= 0) {
       document.body.style.backgroundImage = "url('background-img3.webp')";
-
       document.querySelector("img").style.display = "none";
 
       document.querySelector(".heading h3").style.display = "none";
@@ -44,8 +39,8 @@ function countdown() {
       document.querySelector(".heading h3").style.display = "none";
       document.querySelector(".heading h2").style.display = "none";
     }
-    if (minsLeft <= 3 && daysLeft <= 0 && hrsLeft <= 0) {
-      document.body.style.backgroundImage = "url('germini2.png')";
+    if (minsLeft <= 20 && daysLeft <= 0 && hrsLeft <= 0) {
+      document.body.style.backgroundImage = "url('background-img5.webp')";
 
       const nodeList = document.querySelectorAll("span.num");
       for (let i = 0; i < nodeList.length; i++) {
@@ -66,8 +61,8 @@ function countdown() {
 
       document.querySelector(".heading h3").style.display = "none";
     }
-    if (secsLeft <= 10 && minsLeft <= 0 && daysLeft <= 0 && hrsLeft <= 0) {
-      document.body.style.backgroundImage = "url('germini7.png')";
+    if (secsLeft <= 30 && minsLeft <= 0 && daysLeft <= 0 && hrsLeft <= 0) {
+      document.body.style.backgroundImage = "url('background-img5.webp')";
 
       const nodeList = document.querySelectorAll("span.num");
       for (let i = 0; i < nodeList.length; i++) {
@@ -99,32 +94,3 @@ function countdown() {
 
 let i = setInterval(countdown, 1000);
 countdown();
-
-// --- BOX REMOVAL AND SCALING LOGIC ---
-
-// 1. If no days left: Hide Day box, make others slightly bigger
-if (daysLeft <= 0) {
-  dayBox.parentElement.style.display = "none";
-
-  // Select remaining active boxes (Hr, Min, Sec)
-  const activeBoxes = document.querySelectorAll(".box");
-  activeBoxes.forEach((box) => {
-    if (box.style.display !== "none") {
-      box.style.transform = "scale(1.2)"; // Grows the box by 20%
-      box.style.margin = "0 20px"; // Adds space between larger boxes
-    }
-  });
-}
-
-// 2. If no days AND no hours: Hide Hour box, make Min/Sec even bigger
-if (daysLeft <= 0 && hrsLeft <= 0) {
-  hrBox.parentElement.style.display = "none";
-
-  const activeBoxes = document.querySelectorAll(".box");
-  activeBoxes.forEach((box) => {
-    if (box.style.display !== "none") {
-      box.style.transform = "scale(1.5)"; // Grows remaining boxes by 50%
-      box.querySelector(".num").style.fontSize = "120px"; // Direct font increase
-    }
-  });
-}

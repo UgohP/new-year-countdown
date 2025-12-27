@@ -4,7 +4,7 @@ let minBox = document.getElementById("min-box");
 let secBox = document.getElementById("sec-box");
 
 // Targeting Jan 1, 2026 Midnight (Month is 0-indexed)
-let endDate = new Date(2026, 0, 1, 0, 0);
+let endDate = new Date(2025, 11, 27, 3, 48);
 let endTime = endDate.getTime();
 
 function countdown() {
@@ -51,7 +51,7 @@ function countdown() {
       }
     }
     // 2. If no days AND hours <= 2: Hide day box, make Min/Sec even bigger and change the background
-    if (daysLeft <= 0 && hrsLeft < 2) {
+    if (daysLeft <= 0 && hrsLeft <= 2) {
       document.body.style.backgroundImage = "url('image10.jpg')";
       document.querySelector("img").style.display = "none"; //removes the mostrance image
       document.querySelector(".heading h3").style.display = "none"; //removes the adoration text
@@ -71,8 +71,8 @@ function countdown() {
       }
     }
 
-    // 2. Less than an hour 30 mins
-    if (minsLeft < 30 && daysLeft <= 0 && hrsLeft === 1) {
+    // 2. If no days AND no hours < 1: Hide Hour box, make Min/Sec even bigger
+    if (minsLeft < 30 && daysLeft <= 0 && hrsLeft <= 1) {
       document.body.style.backgroundImage = "url('image2.png')";
       document.querySelector("img").style.display = "none"; //removes the mostrance image
       document.querySelector(".heading h3").style.display = "none"; //removes the adoration text
@@ -92,29 +92,9 @@ function countdown() {
       }
     }
 
-    // 3. less than an hour
+    // 2. If no days AND no hours < 1: Hide Hour box, make Min/Sec even bigger
     if (daysLeft <= 0 && hrsLeft < 1) {
-      document.body.style.backgroundImage = "url('walking-into-2026.jpg')";
-      document.querySelector("img").style.display = "none"; //removes the mostrance image
-      document.querySelector(".heading h3").style.display = "none"; //removes the adoration text
-      document.querySelector(".heading h2").style.display = "none"; //removes the "walking with the load text"
-
-      const nodeList = document.querySelectorAll("span.num");
-      for (let i = 0; i < nodeList.length; i++) {
-        nodeList[i].style.fontSize = "300px";
-        nodeList[i].style.width = "400px";
-        nodeList[i].style.height = "400px";
-      }
-
-      const boxList = document.querySelectorAll(".box");
-      for (let i = 0; i < boxList.length - 2; i++) {
-        boxList[i].style.display = "none";
-      }
-    }
-
-    // 4. less than 30mins
-    if (minsLeft < 30 && daysLeft <= 0 && hrsLeft <= 0) {
-      document.body.style.backgroundImage = "url('hour-glass.jpeg')";
+      document.body.style.backgroundImage = "url('germini2.png')";
       document.querySelector("img").style.display = "none"; //removes the mostrance image
       document.querySelector(".heading h3").style.display = "none"; //removes the adoration text
       document.querySelector(".heading h2").style.display = "none"; //removes the "walking with the load text"
@@ -133,8 +113,28 @@ function countdown() {
       }
     }
 
-    // 5. 10 Minute
-    if (minsLeft < 10 && daysLeft <= 0 && hrsLeft <= 0) {
+    // 2. If no days AND no hours: Hide Hour box, make Min/Sec even bigger
+    if (minsLeft <= 30 && daysLeft <= 0 && hrsLeft <= 0) {
+      document.body.style.backgroundImage = "url('walking-into-2026.jpg')";
+      document.querySelector("img").style.display = "none"; //removes the mostrance image
+      document.querySelector(".heading h3").style.display = "none"; //removes the adoration text
+      document.querySelector(".heading h2").style.display = "none"; //removes the "walking with the load text"
+
+      const nodeList = document.querySelectorAll("span.num");
+      for (let i = 0; i < nodeList.length; i++) {
+        nodeList[i].style.fontSize = "300px";
+        nodeList[i].style.width = "400px";
+        nodeList[i].style.height = "400px";
+      }
+
+      const boxList = document.querySelectorAll(".box");
+      for (let i = 0; i < boxList.length - 2; i++) {
+        boxList[i].style.display = "none";
+      }
+    }
+
+    // 30 Minute Final Logic (Huge numbers)
+    if (minsLeft <= 10 && daysLeft <= 0 && hrsLeft <= 0) {
       document.body.style.backgroundImage = "url('germini2.png')";
 
       const nodeList = document.querySelectorAll("span.num");
@@ -156,35 +156,9 @@ function countdown() {
 
       document.querySelector(".heading h3").style.display = "none";
     }
-
-    // 6. Less than Minute
-    if (minsLeft < 1 && daysLeft <= 0 && hrsLeft <= 0) {
-      document.body.style.backgroundImage = "url('germini7.png')";
-
-      const nodeList = document.querySelectorAll("span.num");
-      for (let i = 0; i < nodeList.length; i++) {
-        nodeList[i].style.color = "darkred";
-        nodeList[i].style.fontSize = "300px";
-        nodeList[i].style.width = "400px";
-        nodeList[i].style.height = "400px";
-      }
-
-      const boxList = document.querySelectorAll(".box");
-      for (let i = 0; i < boxList.length - 1; i++) {
-        boxList[i].style.display = "none";
-      }
-
-      document.querySelector(".heading h2").style.color = "darkred";
-      document.querySelector(".heading h2").style.display = "none";
-      document.querySelector("img").style.display = "none";
-
-      document.querySelector(".heading h3").style.display = "none";
-    }
-
-    // 6. 10 Second Final Countdown (Seconds Only)
+    // 10 Second Final Countdown (Seconds Only)
     if (secsLeft <= 10 && minsLeft <= 0 && daysLeft <= 0 && hrsLeft <= 0) {
-      document.body.style.backgroundImage = "url('mining-2025.jpg')";
-
+      document.body.style.backgroundImage = "url('germini7.png')";
       const nodeList = document.querySelectorAll("span.num");
       for (let i = 0; i < nodeList.length; i++) {
         nodeList[i].style.color = "darkred";
