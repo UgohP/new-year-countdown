@@ -181,32 +181,6 @@ function countdown() {
       document.querySelector(".heading h3").style.display = "none";
     }
 
-    // 6. 10 Second Final Countdown (Seconds Only)
-    if (secsLeft <= 10 && minsLeft <= 0 && daysLeft <= 0 && hrsLeft <= 0) {
-      document.body.style.backgroundImage = "url('mining-2025.jpg')";
-
-      const nodeList = document.querySelectorAll("span.num");
-      for (let i = 0; i < nodeList.length; i++) {
-        nodeList[i].style.color = "darkred";
-        nodeList[i].style.fontSize = "300px";
-        nodeList[i].style.width = "400px";
-        nodeList[i].style.height = "400px";
-      }
-
-      const boxList = document.querySelectorAll(".box");
-      for (let i = 0; i < boxList.length - 1; i++) {
-        boxList[i].style.display = "none";
-      }
-
-      document.querySelector(".heading h2").style.color = "darkred";
-
-      document.querySelector(".heading h2").style.display = "none";
-
-      document.querySelector("img").style.display = "none";
-
-      document.querySelector(".heading h3").style.display = "none";
-    }
-
     // Update Text
     dayBox.textContent = addZeroes(daysLeft);
     hrBox.textContent = addZeroes(hrsLeft);
